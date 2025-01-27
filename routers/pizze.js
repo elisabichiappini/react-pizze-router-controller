@@ -1,15 +1,16 @@
-// importiamo modulo express
-const express = require("express");
+// importo modulo express, router e controller pizze
+const express = require("express"); //CommonJS Modules
 const router = express.Router();
+const pizzeControllers = require("../controllers/pizze.js");
 
-const pizzeController = require('../controllers/pizze.js');
-//router metodo che apre la rotta utilizzando il controller x ( qui siamo già in /pizze)
-router.get('/', pizzeController.index);
+// rotte partendo da /pizze
+router.get("/", pizzeControllers.index);
 
-//importante la posizione sotto il get /
-router.get('/clone', pizzeController.randomClone );
+router.get("/clone", pizzeControllers.randomClone);
 
-//qui siamo in /pizze/:slug
-router.get('/:slug', pizzeController.show);
+router.get("/frank", pizzeControllers.frank);
+
+router.get("/:slug", pizzeControllers.show);
+
 
 module.exports = router;
