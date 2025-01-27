@@ -48,7 +48,7 @@ const show = (req, res) => {
 };
 
 // questo controller aggiunge una pizza duplicandone una a caso tra quelle presenti
-const create = (req, res) => {
+const randomClone = (req, res) => {
     const indexDuplicare = Math.floor(Math.random() * menu.length);
     const pizzaDuplicare = menu[indexDuplicare];
     const filePath = path.join(__dirname, '../db/menu.json');
@@ -61,5 +61,5 @@ const create = (req, res) => {
 //controller create
 
 module.exports = {
-    index, show, create
+    index, show, randomClone
 }
