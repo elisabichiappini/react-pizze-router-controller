@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express"); //CommonJS Modules
 const app = express();
 const pizzeRouter = require("./routers/pizze.js");
+const docsRouter = require("./routers/docsRouter.js");
 
 
 //middelware generici
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/pizze', pizzeRouter);
+app.use('/docs', docsRouter);
 
 
 //start server
