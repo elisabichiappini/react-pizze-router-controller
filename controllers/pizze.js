@@ -1,7 +1,7 @@
 //importo modulo file pizze
 const {menu} = require('../menu.js');
 
-const show = (req, res) => {
+const  index = (req, res) => {
     // Controllo che il menu sia un array
     if (!Array.isArray(menu)) {
         return res.status(500).send('Errore: il menu non è disponibile.');
@@ -34,6 +34,11 @@ const show = (req, res) => {
     })
 };
 
+//creaimo il controller show
+const show = (req, res) => {
+
+}
+
 module.exports = {
-    show
+    index, show
 }
