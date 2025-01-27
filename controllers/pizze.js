@@ -1,15 +1,17 @@
 //importo modulo file pizze
 const menu = require('../db/menu.json');
+const path = require('path');
+const fs = require('fs');
 
-const  index = (req, res) => {
-   
+const index = (req, res) => {
+
     res.format({
         html: () => {
             let html = `
             <h1>Menu delle pizze</h1>
             <ul>`;
             menu.forEach(pizza => {
-                html +=`
+                html += `
                 <li>
                     <h2>${pizza.name}</h2>
                     <img src="/${pizza.image}" alt="img-${pizza.name}" width="100">
@@ -34,8 +36,8 @@ const  index = (req, res) => {
 //creaimo il controller show
 const show = (req, res) => {
     const slugPizzaRichiesta = req.params.slug;
-    const pizzaRichiesta = menu.find( pizza => pizza.slug === slugPizzaRichiesta);
-    if(pizzaRichiesta) {
+    const pizzaRichiesta = menu.find(pizza => pizza.slug === slugPizzaRichiesta);
+    if (pizzaRichiesta) {
         res.json(pizzaRichiesta);
     } else {
         res.status(404).json({
@@ -43,8 +45,20 @@ const show = (req, res) => {
             description: `Non esiste una pizza con slug ${slugPizzaRichiesta}`
         });
     }
-}
+};
+
+// questo controller aggiunge una pizza duplicandone una a caso tra quelle presenti
+const create = (req, res) => {
+    const indexDuplicare = Math.floor(Math.random() * menu.length);
+    const pizzaDuplicare = menu[indexDuplicare];
+    const filePath = path.join(__dirname, '../db/menu.json');
+    //questo sarà il nuovo array
+    const nuovePizze = [...menu, pizzaDuplicare];
+    fs.writeFileSync(filePath, JSON.stringify(nuovePizze));
+    res.redirect('/pizze');
+};
+//controller create
 
 module.exports = {
-    index, show
+    index, show, create
 }

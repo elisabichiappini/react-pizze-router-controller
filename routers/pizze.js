@@ -7,9 +7,7 @@ const pizzeController = require('../controllers/pizze.js');
 router.get('/', pizzeController.index);
 
 //importante la posizione sotto il get /
-router.get('/create', (req, res) =>{
-    res.send('<h2>crea una nuova pizza</h2>');
-});
+router.get('/create', pizzeController.create );
 
 //qui siamo in /pizze/:slug
 router.get('/:slug', pizzeController.show);
