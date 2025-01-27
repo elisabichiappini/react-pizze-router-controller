@@ -1,11 +1,8 @@
 //importo modulo file pizze
-const {menu} = require('../menu.js');
+const menu = require('../db/menu.json');
 
 const  index = (req, res) => {
-    // Controllo che il menu sia un array
-    if (!Array.isArray(menu)) {
-        return res.status(500).send('Errore: il menu non è disponibile.');
-    }
+   
     res.format({
         html: () => {
             let html = `
