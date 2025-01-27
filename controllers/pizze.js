@@ -41,7 +41,10 @@ const show = (req, res) => {
     if(pizzaRichiesta) {
         res.json(pizzaRichiesta);
     } else {
-        res.status(404).send('not-found');
+        res.status(404).json({
+            error: 'not-found',
+            description: `Non esiste una pizza con slug ${slugPizzaRichiesta}`
+        });
     }
 }
 
