@@ -1,20 +1,20 @@
 const menu = [
     {
         name: 'Margherita',
-        slug: 'pizza-margherita',
+        slug: 'margherita',
         image: 'margherita.jpg',
         ingredients: ['pomodoro', 'mozzarella']
     },
     {
         name: 'Prosciutto',
         image: 'prosciutto.jpg',
-        slug: 'pizza-prosciutto',
+        slug: 'prosciutto',
         ingredients: ['pomodoro', 'mozzarella', 'prosciutto']
     },
     {
         name: 'Burrata',
         image: 'burrata.jpg',
-        slug: 'pizza-burrata',
+        slug: 'burrata',
         ingredients: ['pomodoro', 'burrata', 'olive']
     },
 ]

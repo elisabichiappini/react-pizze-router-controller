@@ -36,7 +36,13 @@ const  index = (req, res) => {
 
 //creaimo il controller show
 const show = (req, res) => {
-
+    const slugPizzaRichiesta = req.params.slug;
+    const pizzaRichiesta = menu.find( pizza => pizza.slug === slugPizzaRichiesta);
+    if(pizzaRichiesta) {
+        res.json(pizzaRichiesta);
+    } else {
+        res.status(404).send('not-found');
+    }
 }
 
 module.exports = {
