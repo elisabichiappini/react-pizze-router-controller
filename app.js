@@ -3,14 +3,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const pizzeRouter = require('./routers/pizze.js');
-
+const path = require('path');
 
 //middleware generici
 app.use(express.static('public'));
 
 //rotte/routers
 app.get('/', (req, res) => {
-    res.send(`<h1>Benvenuto in pizze</h1>`);
+    const filePath = path.join(__dirname, './index.html');
+    res.sendFile(filePath);
 });
 app.use('/pizze', pizzeRouter);
 
