@@ -9,11 +9,22 @@ router.get("/:file", (req, res) => {
     const filePath = path.join(__dirname, `../assets/${fileName}`);
     const extension = path.extname(filePath);
     if(extension !== '.pdf'){
-        res.status(400).send(`File non scaricabile perchè con estensione ${extension}`);
+        res.status(400).send(`File non pubblico perchè con estensione ${extension}`);
     }else {
         res.sendFile(filePath);
     }
 });
 
+// rotta per scaricare il file
+router.get("/:file/download", (req, res) => {
+    const fileName = req.params.file;
+    const filePath = path.join(__dirname, `../assets/${fileName}`);
+    const extension = path.extname(filePath);
+    if(extension !== '.pdf'){
+        res.status(400).send(`File non scaricabile perchè con estensione ${extension}`);
+    }else {
+        res.download(filePath);
+    }
+});
 
 module.exports = router;
