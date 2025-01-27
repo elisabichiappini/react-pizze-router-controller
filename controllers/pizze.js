@@ -1,5 +1,5 @@
 //importo modulo file pizze
-const menu = require('../db/menu.json');
+let menu = require('../db/menu.json');
 const path = require('path');
 const fs = require('fs');
 
@@ -55,6 +55,7 @@ const create = (req, res) => {
     //questo sarà il nuovo array
     const nuovePizze = [...menu, pizzaDuplicare];
     fs.writeFileSync(filePath, JSON.stringify(nuovePizze));
+    menu = nuovePizze;
     res.redirect('/pizze');
 };
 //controller create
