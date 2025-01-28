@@ -3,28 +3,12 @@ const express = require("express"); //CommonJS Modules
 const router = express.Router();
 const path = require('path');
 
+const docsController = require('../controllers/docs.js');
+
 // rotte partendo da /docs: abbiamo creato un params che è il nome del filename richiesto
-router.get("/:file", (req, res) => {
-    const fileName = req.params.file;
-    const filePath = path.join(__dirname, `../assets/${fileName}`);
-    const extension = path.extname(filePath);
-    if(extension !== '.pdf'){
-        res.status(400).send(`File non pubblico perchè con estensione ${extension}`);
-    }else {
-        res.sendFile(filePath);
-    }
-});
+router.get("/:file", docsController.file('sendFile'));
 
 // rotta per scaricare il file
-router.get("/:file/download", (req, res) => {
-    const fileName = req.params.file;
-    const filePath = path.join(__dirname, `../assets/${fileName}`);
-    const extension = path.extname(filePath);
-    if(extension !== '.pdf'){
-        res.status(400).send(`File non scaricabile perchè con estensione ${extension}`);
-    }else {
-        res.download(filePath);
-    }
-});
+router.get("/:file/download", docsController.file('download'));
 
 module.exports = router;
